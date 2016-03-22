@@ -82,6 +82,24 @@ The cmp_version module provides a single method, *cmp_version* which compares tw
 
 
 
+Sorting Lists
+-------------
+
+You can sort a list of versions, or filenames containing versions etc like this:
+
+    >>> from cmp_version import cmp_version
+
+    >>>
+
+    >>> x = ['1.12', '1.21', '1.01b']
+
+    >>> sorted(x, cmp=cmp_version)
+
+    ['1.01b', '1.12', '1.21']
+
+
+
+
 Return value
 -------------
 

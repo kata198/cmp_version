@@ -25,7 +25,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='cmp_version',
-            version='1.0.1',
+            version='1.0.2',
             packages=['cmp_version'],
             scripts=['cmp-version'],
             author='Tim Savannah',

@@ -60,6 +60,20 @@ The cmp\_version module provides a single method, *cmp\_version* which compares 
 				cmp_version('1.0.5b', '1.0.5a') would return 1 because 1.0.5b comes after 1.0.5a
 
 
+Sorting Lists
+-------------
+
+You can sort a list of versions, or filenames containing versions etc like this:
+
+    >>> from cmp_version import cmp_version
+    >>>
+    >>> x = ['1.12', '1.21', '1.01b']
+    >>> sorted(x, cmp=cmp_version)
+    ['1.01b', '1.12', '1.21']
+
+	
+
+
 Return value
 ------------
 
