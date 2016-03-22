@@ -9,7 +9,7 @@ Commandline Tool
 
 You can use the provided *cmp-version* tool to compare two version strings. 
 
-It will print to stdout "-1" if version1 is less/older than version2, "0" if they are equal, and "1" if vrsion1 is greater/newer than version2.
+It will print to stdout "-1" if version1 is less/older than version2, "0" if they are equal, and "1" if version1 is greater/newer than version2.
 
 
 Examples:
@@ -54,7 +54,7 @@ The cmp_version module provides a single method, *cmp_version* which compares tw
 
 			@return <int>
 
-				-1  if version1 is older/less than version2
+				\-1  if version1 is older/less than version2
 
 				0   if version1 is equal to version2
 

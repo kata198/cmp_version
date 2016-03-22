@@ -8,7 +8,7 @@ Commandline Tool
 
 You can use the provided *cmp-version* tool to compare two version strings. 
 
-It will print to stdout "-1" if version1 is less/older than version2, "0" if they are equal, and "1" if vrsion1 is greater/newer than version2.
+It will print to stdout "-1" if version1 is less/older than version2, "0" if they are equal, and "1" if version1 is greater/newer than version2.
 
 
 Examples:
