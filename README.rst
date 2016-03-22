@@ -44,6 +44,8 @@ The cmp_version module provides a single method, *cmp_version* which compares tw
 * 1 is returned when version1 is newer/greater than version2.
 
 
+	.
+	
 	def cmp_version(version1, version2):
 
 		'''

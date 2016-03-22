@@ -37,7 +37,8 @@ The cmp\_version module provides a single method, *cmp\_version* which compares 
 
 * 1 is returned when version1 is newer/greater than version2.
 
-
+	.
+	
 	def cmp_version(version1, version2):
 		'''
 			cmp_version - Compare two version strings, checking which one represents a "newer" (greater) release.
