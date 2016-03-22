@@ -29,15 +29,6 @@ Method Signature
 
 The cmp\_version module provides a single method, *cmp\_version* which compares two versions "cmp" style (think strcmp or the "cmp" operator in python<3).
 
-**Return value:**
-
-* 0 is returned when the two versions are equal, even if the strings are not equal (for example "1.0" is the same version as "1.0.0")
-
-* -1 is returned when version1 is older/less than version2
-
-* 1 is returned when version1 is newer/greater than version2.
-
-	.
 	
 	def cmp_version(version1, version2):
 		'''
@@ -56,6 +47,16 @@ The cmp\_version module provides a single method, *cmp\_version* which compares 
 			So for example,
 
 				cmp_version('1.0.5b', '1.0.5a') would return 1 because 1.0.5b comes after 1.0.5a
+
+
+Return value
+------------
+
+* 0 is returned when the two versions are equal, even if the strings are not equal (for example "1.0" is the same version as "1.0.0")
+
+* -1 is returned when version1 is older/less than version2
+
+* 1 is returned when version1 is newer/greater than version2.
 
 
 License
