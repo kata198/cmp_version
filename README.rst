@@ -29,6 +29,20 @@ Examples:
 	0
 
 
+Comparing Filenames
+-------------------
+
+Without actually scanning the contents of a package, you can from a script compare the versions based on the filenames.
+
+Example:
+
+
+	$ cmp-version glibc-6.2.1-3.x86_64.rpm glibc-6.2.3-1.x86_64.rpm
+
+	-1
+
+
+
 
 Method Signature
 ----------------
