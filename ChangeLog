@@ -1,0 +1,5 @@
+* 2.0.0 - Mar 23 2016
+- Add VersionString
+- Switch example "cmp" method which is not supported in python3 to using key=VersionString which works in either.
+- Address issue where a version '.9' did not equal '0.9', by inserting an implicit '0' into comparison before or after head/tail dot
+- Force string in cmp_version to that integer versions don't mess up comparison, and VersionString doesn't recurse

@@ -60,16 +60,33 @@ The cmp\_version module provides a single method, *cmp\_version* which compares 
 				cmp_version('1.0.5b', '1.0.5a') would return 1 because 1.0.5b comes after 1.0.5a
 
 
+Special Type
+------------
+
+cmp\_version provides a special type, "VersionString", which inherits string. All the comparison magic functions are implemented, such that you can directly compare VersionString objects.
+
+Example:
+
+	>>> x = VersionString('0.1b2')
+	>>> y = VersionString('.2b2')
+	>>>
+	>>> '0.1b2' < '.2b2' # Show that as strings this version compare gives wrong answer
+	False
+	>>> x < y # Show that using VersionString objects, the comparison does work
+	True
+
+
+
 Sorting Lists
 -------------
 
 You can sort a list of versions, or filenames containing versions etc like this:
 
-    >>> from cmp_version import cmp_version
+    >>> from cmp_version import cmp_version, VersionString
     >>>
-    >>> x = ['1.12', '1.21', '1.01b']
-    >>> sorted(x, cmp=cmp_version)
-    ['1.01b', '1.12', '1.21']
+    >>> x = ['.9a', '0.9', '0.9.0', '1.2c', '1.1b', '1.b4.0']
+    >>> sorted(x, key=VersionString)
+    ['0.9', '0.9.0', '.9a', '1.1b', '1.2c', '1.b4.0']
 
 	
 
