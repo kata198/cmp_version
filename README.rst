@@ -87,6 +87,7 @@ Special Type
 
 cmp_version provides a special type, "VersionString", which inherits string. All the comparison magic functions are implemented, such that you can directly compare VersionString objects.
 
+
 Example:
 
 	>>> x = VersionString('0.1b2')
@@ -110,6 +111,7 @@ Sorting Lists
 -------------
 
 You can sort a list of versions, or filenames containing versions etc like this:
+
 
     >>> from cmp_version import cmp_version, VersionString
 
