@@ -1,3 +1,7 @@
+* 2.1.0 - Oct 25 2016 (unreleased)
+- Add a lot of comments explaining what is going on
+- Rename some variables to make things more clear
+
 * 2.0.0 - Mar 23 2016
 - Add VersionString
 - Switch example "cmp" method which is not supported in python3 to using key=VersionString which works in either.
