@@ -110,7 +110,6 @@ def cmp_version(version1, version2):
             try1Len = len(try1)
             try2 = ALPHA_OR_NUM_RE.findall(version2Split[i])
             try2Len = len(try2)
-            import pdb; pdb.set_trace()
             for j in range(len(try1)):
 
                 if j >= try2Len:
