@@ -122,7 +122,7 @@ def cmp_version(version1, version2):
                 (alpha1, numeric1) = try1[j]
                 (alpha2, numeric2) = try2[j]
 
-                resAlpha = cmp(alpha1, alpha2)
+                resAlpha = cmp(alpha1.lower(), alpha2.lower())
                 if resAlpha != 0:
                     # Alpha blocks are not the same, we are done.
                     return resAlpha
