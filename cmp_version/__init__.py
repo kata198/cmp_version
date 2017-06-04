@@ -20,9 +20,9 @@ except NameError:
 
 __all__ = ('cmp_version', 'VersionString')
 
-__version__ = '2.1.0'
+__version__ = '2.1.1'
 
-__version_tuple__ = (2, 1, 0)
+__version_tuple__ = (2, 1, 1)
 
 ALPHA_OR_NUM_RE = re.compile('([a-zA-Z]+)|([0-9]+)')
 
