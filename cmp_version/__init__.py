@@ -58,38 +58,50 @@ def cmp_version(version1, version2):
 
     # Try to extract release if present.
     #   Strip from the version, and only check if versions are otherwise equal
-    #   TODO: Treat absent release number same as -0
+    #   TODO: Compare release if version strings shown equal below
     version1Release = None
     version2Release = None
 
+    # hasDefinedRelease - set to True if at least one version as a release set
+    hasDefinedRelease = False 
+
     version1ReleaseMatch = RELEASE_RE.match(version1)
     if version1ReleaseMatch:
+        hasDefinedRelease = True
         version1ReleaseMatchGroupDict = version1ReleaseMatch.groupdict()
 
         version1Release = version1ReleaseMatchGroupDict['release']
         version1 = version1ReleaseMatchGroupDict['version']
+    else:
+        version1Release = '0'
 
     version2ReleaseMatch = RELEASE_RE.match(version2)
     if version2ReleaseMatch:
+        hasDefinedRelease = True
         version2ReleaseMatchGroupDict = version2ReleaseMatch.groupdict()
 
         version2Release = version2ReleaseMatchGroupDict['release']
         version2 = version2ReleaseMatchGroupDict['version']
+    else:
+        version2Release = '0'
 
     # Check if we have identical versions except release
-    if version1Release or version2Release:
+    if hasDefinedRelease is True:
         # We know at this point that at least the versions are not exactly
         #   the same (would have matched above)
         if version1 == version2:
             # Versions are equal without release
 
-            #   First check if one has release and other doesn't
-            if version1Release and not version2Release:
-                return 1
-            elif version2Release and not version1Release:
-                return -1
+            try:
+                # See if we are dealing with basic integer release numbers
+                #   and short-circuit if so
+                # NOTE: This also catches the case if one has a defined release of -0
+                #          and the other is lacking (they will be equal because default release=0)
+                return cmp( int(version1Release), int(version2Release) )
+            except:
+                pass
 
-            # Both have release, but version part is equal, so treat the release
+            # Both have different release, but version part is equal, so treat the release
             #   as the entire version in recurse
             return cmp_version(version1Release, version2Release)
 
