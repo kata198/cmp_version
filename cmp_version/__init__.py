@@ -26,6 +26,9 @@ __version_tuple__ = (2, 1, 1)
 
 ALPHA_OR_NUM_RE = re.compile('([a-zA-Z]+)|([0-9]+)')
 
+
+RELEASE_RE = re.compile('^(?P<version>.*)[\-](?P<release>[\d]+)$')
+
 def cmp_version(version1, version2):
     '''
         cmp_version - Compare two strings which contain versions, checking which one represents a "newer" (greater) release.
@@ -52,6 +55,44 @@ def cmp_version(version1, version2):
     # Check if they are the same
     if version1 == version2:
         return 0
+
+    # Try to extract release if present.
+    #   Strip from the version, and only check if versions are otherwise equal
+    #   TODO: Treat absent release number same as -0
+    version1Release = None
+    version2Release = None
+
+    version1ReleaseMatch = RELEASE_RE.match(version1)
+    if version1ReleaseMatch:
+        version1ReleaseMatchGroupDict = version1ReleaseMatch.groupdict()
+
+        version1Release = version1ReleaseMatchGroupDict['release']
+        version1 = version1ReleaseMatchGroupDict['version']
+
+    version2ReleaseMatch = RELEASE_RE.match(version2)
+    if version2ReleaseMatch:
+        version2ReleaseMatchGroupDict = version2ReleaseMatch.groupdict()
+
+        version2Release = version2ReleaseMatchGroupDict['release']
+        version2 = version2ReleaseMatchGroupDict['version']
+
+    # Check if we have identical versions except release
+    if version1Release or version2Release:
+        # We know at this point that at least the versions are not exactly
+        #   the same (would have matched above)
+        if version1 == version2:
+            # Versions are equal without release
+
+            #   First check if one has release and other doesn't
+            if version1Release and not version2Release:
+                return 1
+            elif version2Release and not version1Release:
+                return -1
+
+            # Both have release, but version part is equal, so treat the release
+            #   as the entire version in recurse
+            return cmp_version(version1Release, version2Release)
+
 
     # If prefixed or suffixed with a ., insert a '0'
     if version1.startswith('.'):
@@ -86,6 +127,7 @@ def cmp_version(version1, version2):
 
     # Check if the additional padding has made the items equal
     if version1Split == version2Split:
+        # TODO: Check release here because versions equal
         return 0
 
     # Transverse through each block
@@ -151,6 +193,7 @@ def cmp_version(version1, version2):
                 return -1
 
     # End of the line,
+    # TODO: Check release here because versions equal
     return 0
 
 
