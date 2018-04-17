@@ -58,7 +58,6 @@ def cmp_version(version1, version2):
 
     # Try to extract release if present.
     #   Strip from the version, and only check if versions are otherwise equal
-    #   TODO: Compare release if version strings shown equal below
     version1Release = None
     version2Release = None
 
@@ -91,19 +90,7 @@ def cmp_version(version1, version2):
         #   the same (would have matched above)
         if version1 == version2:
             # Versions are equal without release
-
-            try:
-                # See if we are dealing with basic integer release numbers
-                #   and short-circuit if so
-                # NOTE: This also catches the case if one has a defined release of -0
-                #          and the other is lacking (they will be equal because default release=0)
-                return cmp( int(version1Release), int(version2Release) )
-            except:
-                pass
-
-            # Both have different release, but version part is equal, so treat the release
-            #   as the entire version in recurse
-            return cmp_version(version1Release, version2Release)
+            return _cmp_release(version1Release, version2Release)
 
 
     # If prefixed or suffixed with a ., insert a '0'
@@ -139,7 +126,10 @@ def cmp_version(version1, version2):
 
     # Check if the additional padding has made the items equal
     if version1Split == version2Split:
-        # TODO: Check release here because versions equal
+        if hasDefinedRelease:
+            # If we have a release set, the version part is equal, so
+            #   compare the release
+            return _cmp_release(version1Release, version2Release)
         return 0
 
     # Transverse through each block
@@ -205,8 +195,39 @@ def cmp_version(version1, version2):
                 return -1
 
     # End of the line,
-    # TODO: Check release here because versions equal
+    if hasDefinedRelease:
+        # If we have a release set, the version part is equal, so
+        #   compare the release
+        return _cmp_release(version1Release, version2Release)
+
     return 0
+
+def _cmp_release(version1Release, version2Release):
+    '''
+        _cmp_release - [INTERNAL] Compare the release version portion of a version string
+
+            @param version1Release <str> - The release portion (follows the dash at end of version string)
+
+            @param version2Release <str> - The release portion (follows the dash at end of version string)
+
+            @return <int> - 
+                            <0 if version1Release is less than version2Release
+                             0 if version1Release is equal to version2Release
+                            >0 if version1Release is greater than version2Release
+    '''
+
+    try:
+        # See if we are dealing with basic integer release numbers
+        #   and short-circuit if so
+        # NOTE: This also catches the case if one has a defined release of -0
+        #          and the other is lacking (they will be equal because default release=0)
+        return cmp( int(version1Release), int(version2Release) )
+    except:
+        pass
+
+    # Both have different release, but version part is equal, so treat the release
+    #   as the entire version in recurse
+    return cmp_version(version1Release, version2Release)
 
 
 class VersionString(str):
