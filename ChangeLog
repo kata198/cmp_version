@@ -1,3 +1,8 @@
+* 3.0.0 - ??? ? ????
+- Add unit tests for lots of different version scenarios
+- Add support for versions which contain a "release number", e.x. 1.5.7-14 has "release number" 14.
+
+
 * 2.1.1 - Jun 4 2017
 - Add a lot of comments explaining what is going on
 - Rename some variables to make things more clear
