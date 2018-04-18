@@ -25,7 +25,7 @@ if __name__ == '__main__':
         long_description = summary
 
     setup(name='cmp_version',
-            version='2.1.1',
+            version='3.0.0',
             packages=['cmp_version'],
             scripts=['cmp-version'],
             author='Tim Savannah',
@@ -48,6 +48,7 @@ if __name__ == '__main__':
                           'Programming Language :: Python :: 3.3',
                           'Programming Language :: Python :: 3.4',
                           'Programming Language :: Python :: 3.5',
+                          'Programming Language :: Python :: 3.6',
                           'Topic :: Software Development :: Version Control',
                           'Topic :: Software Development :: Libraries :: Python Modules',
             ]
