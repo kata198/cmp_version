@@ -1,7 +1,7 @@
-* 3.0.0 - ??? ? ????
+* 3.0.0 - Apr 17 2018
 - Add unit tests for lots of different version scenarios
-- Add support for versions which contain a "release number", e.x. 1.5.7-14 has "release number" 14.
-
+- Add support for versions which contain one or more "release number", e.x. 1.5.7-14 has "release number" 14.
+- Add support for versions with an Epoch, e.x. "5:1.7" is greater than "4:2.5" or "2.5" because of Epoch=5. Default Epoch is 0
 
 * 2.1.1 - Jun 4 2017
 - Add a lot of comments explaining what is going on
