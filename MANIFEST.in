@@ -7,3 +7,5 @@ include MANIFEST.in
 include setup.py
 include cmp-version
 include ChangeLog
+recursive-include tests runTests.py
+recursive-include tests/cmp_version_Tests *.py
