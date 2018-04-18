@@ -73,6 +73,14 @@ class TestRelease(object):
         assert cmpFunc('1.5-6.23', '1.5-6.23-1') < 0 , 'Expected "1.5-6.23" to be less than "1.5-6.23-1"'
         assert cmpFunc('1.5-6.23-0', '1.5-6.23') == 0 , 'Expected "1.5-6.23-0" to be equal to "1.5-6.23"'
 
+    def test_unevenRelease(self):
+
+        cmpFunc = cmp_version.cmp_version
+
+        assert cmpFunc('1.0-2.0-3.0', '1.0-2.0') > 0 , 'Expected "1.0-2.0-3.0" to be greater than "1.0-2.0"'
+        assert cmpFunc('1.0-2.0', '1.0-2.0-3.0') < 0 , 'Expected "1.0-2.0" to be less than "1.0-2.0-3.0"'
+        assert cmpFunc('1.0-2.0', '1.0-2.0-0-0-0') == 0 , 'Expected "1.0-2.0" to be equal to "1.0-2.0-0-0-0"'
+
 
 if __name__ == '__main__':
     sys.exit(subprocess.Popen('GoodTests.py -n1 "%s" %s' %(sys.argv[0], ' '.join(['"%s"' %(arg.replace('"', '\\"'), ) for arg in sys.argv[1:]]) ), shell=True).wait())
