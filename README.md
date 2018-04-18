@@ -2,6 +2,8 @@
 
 A script and python module to compare version numbers. Use this to compare the version strings of packages, modules, really anything.
 
+Since version 3.0, cmp\_version supports all kinds of complex version numbers, including those with releases ( like $version-5 ) or Epochs (like 5:$version)
+
 
 Commandline Tool
 ----------------
